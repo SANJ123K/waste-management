@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info label {
+            font-weight: bold;
+        }
+
+        .profile-info span {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+     {% include "Nav_bar.html" %}
+    <h1>User Profile</h1>
+    <div class="profile-info">
+        <label for="name">Name:</label>
+        <span>{{ usr[0] + usr[1]}}</span>
+
+        <label for="contact">Contact:</label>
+        <span>{{ usr[2] }}</span>
+
+        <label for="email">Email:</label>
+        <span>{{ usr[3] }}</span>
+
+        <label for="password">Password:</label>
+        <span>{{ usr[4] }}</span>
+
+        <label for="address">Address:</label>
+        <span>{{ usr[5] }}</span>
+
+        <label for="city">City:</label>
+        <span>{{ usr[6] }}</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ecobin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        .nav {
+            height: 80px;
+            width: 100%;
+            background-color: #4caf50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .nav h1 {
+            color: white;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 120px auto 20px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            width: 200px;
+            height: 120px;
+            margin: 20px;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            line-height: 120px;
+            transition: background-color 0.3s;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn i {
+            margin-right: 10px;
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                margin-top: 180px;
+            }
+            .nav h1 {
+                font-size: 20px;
+            }
+            .btn {
+                width: calc(50% - 40px);
+                margin: 10px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .nav h1 {
+                font-size: 18px;
+            }
+            .btn {
+                width: calc(100% - 40px);
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "Nav_bar.html" %}
+    <div class="container">
+        <a href="/create-bin" class="btn"><i class="fas fa-plus"></i>Create Bin</a>
+        <a href="/update-bin" class="btn"><i class="fas fa-edit"></i>Update Bin</a>
+        <a href="/register-driver" class="btn"><i class="fas fa-user-plus"></i>Add Driver</a>
+        <a href="/view-details" class="btn"><i class="fas fa-users"></i>Driver Details</a>
+        <a href="/view-complaints" class="btn"><i class="fas fa-exclamation-circle"></i>View Complaints</a>
+        <a href="/user-details" class="btn"><i class="fas fa-address-card"></i>User Details</a>
+        <a href="/bin-level" class="btn"><i class="fas fa-chart-bar"></i>Check Bin Level</a>
+    </div>
+</body>
+</html>

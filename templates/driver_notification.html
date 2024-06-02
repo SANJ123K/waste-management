@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dustbin Collection Notification</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    .contents {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .container {
+        max-width: 800px;
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .header {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .block {
+        flex: 1 1 calc(50% - 20px);
+        margin: 10px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+
+    .title {
+        font-weight: 500;
+        color: #555;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .value {
+        font-size: 1em;
+        color: #333;
+        background: #e0e0e0;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .value input {
+        width: 100%;
+        border: none;
+        background: none;
+        text-align: center;
+        font-size: 1em;
+        color: #333;
+    }
+
+    .block:hover .value {
+        background: #d4d4d4;
+    }
+
+    .message {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #e7f3fe;
+        border: 1px solid #b3d8fd;
+        color: #31708f;
+        font-size: 1.1em;
+        text-align: center;
+    }
+
+    .button-container {
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .done {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+    }
+
+    .not-done {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</head>
+<body>
+{% include "Nav_bar.html" %}
+<div class="contents">
+    <div class="container not-done" id="notification-container">
+        <div class="header">Dustbin Collection Notification</div>
+        <form action="{{ url_for('collected') }}" method="POST">
+            {% for dust in dustbin %}
+            <div class="content">
+                <div class="block">
+                    <div class="title">Dustbin ID:</div>
+                    <div class="value">
+                        <input type="text" name="dustbin_id" value="{{ dust[0] }}" readonly>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="title">Area:</div>
+                    <div class="value">
+                        <input type="text" name="area" value="{{ dust[1] }}" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="block">
+                    <div class="title">Locality:</div>
+                    <div class="value">
+                        <input type="text" name="locality" value="{{ dust[2] }}" readonly>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="title">Landmark:</div>
+                    <div class="value">
+                        <input type="text" name="landmark" value="{{ dust[3] }}" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="block">
+                    <div class="title">City:</div>
+                    <div class="value">
+                        <input type="text" name="city" value="{{ dust[4] }}" readonly>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="title">Driver's Name:</div>
+                    <div class="value">
+                        <input type="text" name="driver_name" value="{{ dust[5] }}" readonly>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="title">Mobile Number:</div>
+                    <div class="value">
+                        <input type="text" name="mobile_number" value="{{ dust[6] }}" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="message">
+                Please collect the dustbin at the specified location. Thank you for your service!
+            </div>
+            <div class="content">
+                <div class="block">
+                    <div class="title">Date:</div>
+                    <div class="value">
+                        <input type="text" id="current-date" name="date" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit" id="done-btn">Done</button>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+        document.getElementById('current-date').value = formattedDate;
+    });
+</script>
+</body>
+</html>

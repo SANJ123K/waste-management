@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Field</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/css/ionicons.min.css">
+  <script src="https://kit.fontawesome.com/1db4b84a6c.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ecf0f3;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .button {
+      display: block;
+      background-color: #3498db;
+      color: #fff;
+      padding: 15px 30px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #2980b9;
+    }
+
+    .button i {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  {% include "Nav_bar.html" %}
+  <div class="container">
+    <a href="/driver-notification" class="button">
+      <i class="ion-trash-a"></i>
+      <span>Show Completely Filled Dustbins</span>
+    </a>
+    <a href="/view-dustbins" class="button">
+      <i class="ion-archive"></i>
+      <span>View Collected Dustbins</span>
+    </a>
+  </div>
+</body>
+</html>

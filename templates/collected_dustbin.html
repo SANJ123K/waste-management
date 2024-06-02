@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dustbin Collection Notification</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    .contents {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: yellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 700px;
+        background: black;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .header {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .block {
+        flex: 1;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+
+    .title {
+        font-weight: 500;
+        color: #ddd;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .value {
+        font-size: 1em;
+        color: #fff;
+        background: #444;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .message {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #444;
+        border: 1px solid #333;
+        color: #fff;
+        font-size: 1.1em;
+        text-align: center;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</head>
+<body>
+{% include "Nav_bar.html" %}
+<div class="contents">
+<div class="container not-done" id="notification-container">
+
+    <div class="header">Collected Dustbin</div>
+    {% for dust in dustbin %}
+    <div class="content">
+        <div class="block">
+            <div class="title">Dustbin ID:</div>
+            <div class="value">{{dust[0]}}</div>
+        </div>
+        <div class="block">
+            <div class="title">Area:</div>
+            <div class="value">{{dust[1]}}</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="block">
+            <div class="title">Locality:</div>
+            <div class="value">{{dust[2]}}</div>
+        </div>
+        <div class="block">
+            <div class="title">Landmark:</div>
+            <div class="value">{{dust[3]}}</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="block">
+            <div class="title">City:</div>
+            <div class="value">{{dust[4]}}</div>
+        </div>
+        <div class="block">
+            <div class="title">Driver's Name:</div>
+            <div class="value">{{dust[5]}}</div>
+        </div>
+        <div class="block">
+            <div class="title">Mobile Number:</div>
+            <div class="value">{{dust[6]}}</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="block">
+            <div class="title">Date:</div>
+            <div class="value">{{dust[7]}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</body>
+</html>

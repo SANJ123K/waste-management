@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Bin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    {% include "Nav_bar.html" %}
+    <div class="container">
+        <h1>Create Bin</h1>
+        <form action="{{ url_for('add_bin') }}" method="post" onsubmit="return handleFormSubmit()">
+            <label for="bin_id">Bin ID:</label>
+            <input type="text" id="bin_id" name="bin_id" required>
+
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required>
+
+            <label for="locality">Locality:</label>
+            <input type="text" id="locality" name="locality" required>
+
+            <label for="landmark">Landmark:</label>
+            <input type="text" id="landmark" name="landmark" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="loadtype">Load Type:</label>
+            <select id="loadtype" name="loadtype">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+
+            <label for="cycleperiod">Cycle Period:</label>
+            <select id="cycleperiod" name="cycleperiod">
+                <option value="daily">Daily</option>
+                <option value="twice_weekly">Twice Weekly</option>
+                <option value="weekly">Weekly</option>
+            </select>
+
+            <input type="submit" value="Create">
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Complaints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .complaint {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .complaint h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .complaint p {
+            margin-bottom: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+{% include "Nav_bar.html" %}
+    <h1>My Complaints</h1>
+    <div id="complaints">
+        {% for complaint in complaints %}
+            <div class="complaint">
+                <h3>{{complaint[0]}}</h3>
+                <p>{{ complaint[1] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

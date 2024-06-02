@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styled.css') }}">
+</head>
+<body>
+    {% include "Nav_bar.html" %}
+    <div class="container">
+        <h1>Driver Details</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Area</th>
+                <th>ID Card</th>
+                <th>Actions</th>
+            </tr>
+            {% for driver in drivers %}
+            <tr>
+                <td>{{ driver[0] }}</td>
+                <td>{{ driver[1] }}</td>
+                <td>{{ driver[3] }}</td>
+                <td>{{ driver[4] }}</td>
+                <td>{{ driver[5] }}</td>
+                <td>{{ driver[6] }}</td>
+                <td>
+                    <a href="/update-driver" class="update-button">Update</a>
+                    <form action="{{ url_for('delete_driver') }}" method="post">
+                        <input type="hidden" name="email" value="{{ driver[1] }}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
